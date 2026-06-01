@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Praveen Kumar Chaganlal — Senior Software Engineer</title>
+<meta name="description" content="Praveen Kumar Chaganlal — Senior Software Engineer on LinkedIn's Data Infrastructure team. Apache Pinot internals, differential privacy, query resource isolation, and real-time analytics." />
+<meta name="author" content="Praveen Kumar Chaganlal" />
+<meta name="theme-color" content="#fafafa" />
+
+<!-- Open Graph / social sharing. Update og:url to your GitHub Pages URL once it's live. -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Praveen Kumar Chaganlal — Senior Software Engineer" />
+<meta property="og:description" content="Senior Software Engineer on LinkedIn's Data Infrastructure team. Apache Pinot internals, differential privacy, and real-time analytics." />
+<meta property="og:url" content="https://praveenc7.github.io/praveenkumarc/" />
+<meta name="twitter:card" content="summary" />
+
+<!-- Inline SVG favicon (monogram), no extra file needed -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232657a8'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='700' fill='white' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #fafafa;
+    --surface: #f2f3f5;
+    --ink: #18181b;
+    --ink-2: #3f3f46;
+    --ink-3: #71717a;
+    --rule: #e4e4e7;
+    --accent: #2657a8;
+    --accent-deep: #1b3f7d;
+    --accent-soft: rgba(38, 87, 168, 0.07);
+    --maxw: 1080px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { color: var(--accent-deep); }
+
+  .mono {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  /* ─── ACCESSIBILITY ───────────────────────────── */
+  .skip-link {
+    position: absolute; left: -999px; top: 0;
+    background: var(--accent); color: #fff;
+    padding: 0.6rem 1rem; z-index: 200; border-radius: 0 0 6px 0;
+  }
+  .skip-link:focus { left: 0; color: #fff; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+  /* ─── NAV ─────────────────────────────────────── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 1rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 100;
+    background: rgba(250, 250, 250, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .25s ease, box-shadow .25s ease;
+  }
+  nav.scrolled {
+    border-bottom-color: var(--rule);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.04);
+  }
+  nav .mark {
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+  }
+  nav .mark span { color: var(--accent); }
+  nav ul { list-style: none; display: flex; gap: 1.8rem; }
+  nav a {
+    color: var(--ink-3);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color .2s ease;
+  }
+  nav a:hover, nav a.active { color: var(--ink); }
+  nav a.active { color: var(--accent); }
+
+  /* ─── LAYOUT ──────────────────────────────────── */
+  section { padding: 6rem 2rem; position: relative; }
+  .container { max-width: var(--maxw); margin: 0 auto; }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    margin-bottom: 1.2rem;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .section-label::before {
+    content: ''; width: 22px; height: 2px; background: var(--accent);
+  }
+
+  h2.section-title {
+    font-weight: 700;
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 2.5rem;
+    color: var(--ink);
+  }
+
+  /* ─── HERO ────────────────────────────────────── */
+  .hero {
+    min-height: 88vh;
+    padding: 9rem 2rem 5rem;
+    display: flex; align-items: center;
+  }
+  .hero-inner { max-width: var(--maxw); margin: 0 auto; width: 100%; }
+  .hero .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-3);
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-weight: 500;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.3;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .hero-sub {
+    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+    line-height: 1.6;
+    color: var(--ink-2);
+    max-width: 640px;
+    margin-top: 1.6rem;
+  }
+  .hero-cta {
+    display: flex; flex-wrap: wrap; gap: 0.8rem;
+    margin-top: 2.2rem;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    padding: 0.7rem 1.2rem;
+    border-radius: 6px;
+    border: 1px solid var(--rule);
+    color: var(--ink-2);
+    background: #fff;
+    transition: border-color .2s ease, color .2s ease, transform .15s ease;
+  }
+  .btn:hover { color: var(--ink); border-color: var(--ink-3); transform: translateY(-1px); }
+  .btn-primary {
+    background: var(--accent); color: #fff; border-color: var(--accent);
+  }
+  .btn-primary:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+  .hero-facts {
+    margin-top: 2.4rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+  }
+
+  /* ─── ABOUT ───────────────────────────────────── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+  .about-body p {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: var(--ink-2);
+    margin-bottom: 1.2rem;
+  }
+  .about-body p:last-child { margin-bottom: 0; }
+  .about-body strong { color: var(--ink); font-weight: 600; }
+
+  /* ─── PROJECTS ────────────────────────────────── */
+  .projects { background: var(--surface); }
+  .project {
+    display: grid;
+    grid-template-columns: 0.8fr 1.6fr;
+    gap: 3rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+  .project:first-of-type { border-top: 1px solid var(--rule); }
+  .project:last-child { border-bottom: 1px solid var(--rule); }
+
+  .project-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent);
+    letter-spacing: 0.14em;
+    margin-bottom: 0.9rem;
+  }
+  .project-name {
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.6rem;
+    color: var(--ink);
+  }
+  .project-tag {
+    font-size: 0.92rem;
+    color: var(--ink-3);
+    margin-bottom: 1.1rem;
+    line-height: 1.4;
+  }
+  .project-role {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    border: 1px solid var(--rule);
+    background: var(--accent-soft);
+    padding: 0.35rem 0.7rem;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+  }
+  .project-body p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--ink-2);
+    margin-bottom: 1.1rem;
+  }
+  .project-body strong { color: var(--ink); font-weight: 600; }
+
+  .impact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 1.4rem;
+    margin-top: 1.8rem;
+    padding-top: 1.8rem;
+    border-top: 1px solid var(--rule);
+  }
+  .impact .num {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .impact .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-3);
+    margin-top: 0.45rem;
+    line-height: 1.4;
+  }
+
+  .recognition {
+    margin-top: 1.8rem;
+    padding: 1rem 1.2rem;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+  }
+  .recognition strong {
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    display: block;
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.35rem;
+  }
+
+  /* ─── EXPERIENCE ──────────────────────────────── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr 1.3fr;
+    gap: 2.5rem;
+    padding: 2.4rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: start;
+  }
+  .exp-item:last-child { border-bottom: 1px solid var(--rule); }
+  .exp-year {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-3);
+    padding-top: 0.2rem;
+  }
+  .exp-title h3 {
+    font-weight: 700;
+    font-size: 1.25rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.3rem;
+    color: var(--ink);
+  }
+  .exp-title .role {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    letter-spacing: 0.03em;
+  }
+  .exp-body ul {
+    list-style: none;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    line-height: 1.65;
+  }
+  .exp-body li {
+    padding-left: 1.3rem;
+    margin-bottom: 0.6rem;
+    position: relative;
+  }
+  .exp-body li:last-child { margin-bottom: 0; }
+  .exp-body li::before {
+    content: '–';
+    position: absolute;
+    left: 0; top: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .exp-body li strong { color: var(--ink); font-weight: 600; }
+
+  /* ─── TALKS ───────────────────────────────────── */
+  .speaking { background: var(--surface); }
+  .talk-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .talk {
+    padding: 1.8rem;
+    border: 1px solid var(--rule);
+    background: #fff;
+    border-radius: 8px;
+    transition: border-color .2s ease, box-shadow .2s ease;
+  }
+  .talk:hover {
+    border-color: var(--ink-3);
+    box-shadow: 0 8px 24px -16px rgba(0, 0, 0, 0.2);
+  }
+  .talk-meta {
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.9rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .talk-meta .badge {
+    color: var(--accent);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--rule);
+    background: var(--accent-soft);
+    border-radius: 4px;
+  }
+  .talk h3 {
+    font-weight: 600;
+    font-size: 1.15rem;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    margin-bottom: 0.7rem;
+    color: var(--ink);
+  }
+  .talk-desc {
+    font-size: 0.9rem;
+    color: var(--ink-2);
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
+  }
+  .talk-venue {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--ink-3);
+  }
+
+  /* ─── RESEARCH ─────────────────────────────────── */
+  .research-item {
+    display: grid;
+    grid-template-columns: 150px 1fr auto;
+    gap: 2rem;
+    padding: 1.6rem 0;
+    border-top: 1px solid var(--rule);
+    align-items: baseline;
+  }
+  .research-item:last-child { border-bottom: 1px solid var(--rule); }
+  .research-kind {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .research-title {
+    font-size: 1.05rem;
+    line-height: 1.4;
+    color: var(--ink);
+    font-weight: 500;
+  }
+  .research-title a {
+    color: inherit;
+    border-bottom: 1px solid var(--rule);
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .research-title a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .research-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--ink-3);
+    text-align: right;
+  }
+  .research-meta .pub {
+    color: var(--ink-2);
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+
+  /* ─── SKILLS ──────────────────────────────────── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 1.8rem;
+  }
+  .skill-block {
+    border-top: 2px solid var(--accent);
+    padding-top: 1.1rem;
+  }
+  .skill-block h5 {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+    color: var(--ink);
+  }
+  .skill-block ul {
+    list-style: none;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    color: var(--ink-2);
+    line-height: 2;
+  }
+
+  /* ─── FOOTER ──────────────────────────────────── */
+  footer {
+    padding: 5rem 2rem 2.5rem;
+    border-top: 1px solid var(--rule);
+    background: var(--surface);
+  }
+  .footer-grid {
+    max-width: var(--maxw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+  footer h2 {
+    font-weight: 700;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    color: var(--ink);
+  }
+  footer .footer-lede {
+    color: var(--ink-2);
+    margin-top: 1rem;
+    max-width: 360px;
+    font-size: 1rem;
+  }
+  .contact-list { list-style: none; }
+  .contact-list li {
+    border-top: 1px solid var(--rule);
+    padding: 1rem 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.86rem;
+    gap: 1rem;
+  }
+  .contact-list li:last-child { border-bottom: 1px solid var(--rule); }
+  .contact-list .label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-3);
+  }
+  .contact-list a, .contact-list .value { color: var(--ink); }
+  .contact-list a:hover { color: var(--accent); }
+
+  .footer-bottom {
+    max-width: var(--maxw);
+    margin: 3.5rem auto 0;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--rule);
+    display: flex; justify-content: space-between;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    flex-wrap: wrap; gap: 1rem;
+  }
+
+  /* ─── REVEAL (subtle) ─────────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.in { opacity: 1; transform: translateY(0); }
+  .reveal.d1 { transition-delay: .06s; }
+  .reveal.d2 { transition-delay: .12s; }
+  .reveal.d3 { transition-delay: .18s; }
+  .reveal.d4 { transition-delay: .24s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .reveal { opacity: 1; transform: none; transition: none; }
+    .btn:hover, .talk:hover { transform: none; }
+  }
+
+  /* ─── RESPONSIVE ──────────────────────────────── */
+  @media (max-width: 860px) {
+    nav { padding: 0.9rem 1.2rem; }
+    nav ul { gap: 1rem; }
+    nav ul li:nth-child(n+4) { display: none; }
+    section { padding: 4rem 1.2rem; }
+    .hero { padding: 7rem 1.2rem 3rem; min-height: auto; }
+    .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .project { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.4rem 0; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.8rem; padding: 2rem 0; }
+    .talk-grid { grid-template-columns: 1fr; }
+    .research-item { grid-template-columns: 1fr; gap: 0.4rem; padding: 1.4rem 0; }
+    .research-meta { text-align: left; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    footer { padding: 3.5rem 1.2rem 2rem; }
+  }
+
+  /* ─── PRINT (clean "Save as PDF") ─────────────── */
+  @media print {
+    nav, .hero-cta, .skip-link { display: none; }
+    body { background: #fff; color: #000; }
+    section, .hero { padding: 1.2rem 0; min-height: auto; }
+    .projects, .speaking, footer { background: #fff; }
+    .reveal { opacity: 1; transform: none; }
+    .project, .exp-item { break-inside: avoid; }
+    a { color: #000; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#about">Skip to content</a>
+
+<nav>
+  <div class="mark">Praveen Chaganlal<span>.</span></div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#work">Experience</a></li>
+    <li><a href="#talks">Talks</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─────────────────────────────────────────── -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="eyebrow">Senior Software Engineer · LinkedIn</p>
+    <h1>I build real-time analytics infrastructure.</h1>
+    <p class="hero-sub">
+      OLAP on Apache Pinot, the privacy and analytics services built on top, and
+      the database internals that keep queries fast and reliable.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:praveenkchaganlal@gmail.com">Email me</a>
+      <a class="btn" href="https://www.linkedin.com/in/praveen-kumar-705ba7118/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="btn" href="#projects">View work</a>
+    </div>
+    <p class="hero-facts">Sunnyvale, CA &nbsp;·&nbsp; Distributed systems &nbsp;·&nbsp; Databases &nbsp;·&nbsp; Privacy</p>
+  </div>
+</header>
+
+<!-- ─── ABOUT ───────────────────────────────────────── -->
+<section id="about" class="about">
+  <div class="container">
+    <div class="section-label reveal">01 / About</div>
+    <div class="about-grid">
+      <h2 class="section-title reveal d1">A systems engineer who works across databases, privacy, and distributed systems.</h2>
+      <div class="about-body reveal d2">
+        <p>
+          I'm a Senior Software Engineer on LinkedIn's Data Infrastructure team,
+          working on <a href="https://docs.pinot.apache.org/" target="_blank" rel="noopener"><strong>Apache Pinot</strong></a> — the real-time OLAP database
+          behind products like Creator analytics and Recruiter search.
+        </p>
+        <p>
+          My work spans <strong>databases, privacy, and distributed systems</strong>.
+          I've shipped a differential-privacy service that protects 100M+ people on
+          the LinkedIn platform
+          (<a href="https://patents.google.com/patent/US20260003996A1/en" target="_blank" rel="noopener">patent</a>),
+          and I work on
+          <strong><a href="https://arxiv.org/abs/2603.07382" target="_blank" rel="noopener">resilience in Pinot</a></strong>.
+          Alongside that, I build analytics
+          services and tooling on top of Pinot — like a
+          <strong>YAML-based analytics engine</strong>.
+        </p>
+        <p>
+          Before LinkedIn, I worked on KVM hypervisors and OpenFlow at <strong>VMware</strong>
+          and built monitoring for virtual routers at <strong>Nokia</strong>. I hold an
+          MS in Computers from <strong>USC</strong>, where I did
+          <a href="https://ieeexplore.ieee.org/abstract/document/9322252" target="_blank" rel="noopener">Wi-Fi channel-measurement research</a>
+          with the WiDeS lab.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PROJECTS ────────────────────────────────────── -->
+<section id="projects" class="projects">
+  <div class="container">
+    <div class="section-label reveal">02 / Selected work</div>
+    <h2 class="section-title reveal d1">Notable Production systems I've designed and led at LinkedIn.</h2>
+
+    <!-- PROJECT 1: PEDAL -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 01</div>
+        <h3 class="project-name">PEDAL</h3>
+        <div class="project-tag">Privacy-Enhanced Data Analytics Layer</div>
+        <span class="project-role">Lead engineer</span>
+      </div>
+      <div class="project-body">
+        <p>
+          LinkedIn's internal <strong><a href="https://www.linkedin.com/blog/engineering/trust-and-safety/privacy-preserving-single-post-analytics" target="_blank" rel="noopener">differential-privacy service</a></strong>. It sits
+          between member-facing analytics products and the Pinot backend, adding
+          calibrated noise to analytics queries so creators see useful demographics
+          without exposing which individual member viewed their content.
+        </p>
+        <p>
+          The service runs in real time on LinkedIn's Pinot stack, adds only tens of
+          milliseconds, and enforces formal DP guarantees. It powers Post, Creator,
+          and Pages Analytics today.
+        </p>
+        <div class="impact-grid">
+          <div class="impact">
+            <div class="num">100M+</div>
+            <div class="label">Members protected daily</div>
+          </div>
+          <div class="impact">
+            <div class="num">&lt;1 in 10</div>
+            <div class="label">Re-identification attempts succeed</div>
+          </div>
+        </div>
+        <div class="recognition">
+          <strong>External recognition</strong>
+          <a href="https://hbsp.harvard.edu/product/623024-PDF-ENG" target="_blank" rel="noopener">Harvard Business School case study</a> ·
+          <a href="https://patents.google.com/patent/US20260003996A1/en" target="_blank" rel="noopener">US Patent (pending)</a> ·
+          Internal Best Innovation award
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: QRI -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 02</div>
+        <h3 class="project-name">Query Resource Isolation</h3>
+        <div class="project-tag">Solving the "noisy neighbor" problem in Pinot</div>
+        <span class="project-role">Co-architect &amp; lead implementer</span>
+      </div>
+      <div class="project-body">
+        <p>
+          In a shared database, one heavy workload can slow down everyone else — the
+          classic "noisy neighbor" problem.
+          <a href="https://arxiv.org/abs/2603.07382" target="_blank" rel="noopener">QRI</a>
+          gives each workload its own CPU and memory budget inside Pinot, so a single
+          expensive query can't drag down the rest. That keeps latencies stable under
+          heavy or unpredictable traffic, protecting product and site health.
+        </p>
+        <p>
+          It also drives efficiency: the same per-workload accounting powers a
+          capacity estimator that sizes clusters more accurately and lets teams
+          safely consolidate workloads, instead of over-provisioning to stay safe.
+        </p>
+        <div class="impact-grid">
+          <div class="impact">
+            <div class="num">&lt;1%</div>
+            <div class="label">Overhead from QRI</div>
+          </div>
+          <div class="impact">
+            <div class="num">&gt;99%</div>
+            <div class="label">Resource accounting accuracy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: Predictable Latencies -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 03</div>
+        <h3 class="project-name">Predictable Latencies</h3>
+        <div class="project-tag">Page-cache warmup for Pinot</div>
+        <span class="project-role">Owner · end-to-end</span>
+      </div>
+      <div class="project-body">
+        <p>
+          Pinot memory-maps its segments, so a freshly restarted host starts with a
+          cold page cache. Early queries faulted data in from disk, causing large
+          short-lived latency spikes, timeouts around deploys and refreshes, and
+          repeated SLO breaches on high-traffic, site-facing tables.
+        </p>
+        <p>
+          I designed and shipped a <strong>query-driven warmup framework</strong>. An
+          offline pipeline analyzes historical logs to pick representative queries per
+          table; at startup or after a segment refresh, the host runs them at a
+          controlled rate before accepting live traffic. Per-table settings and hard
+          timeouts keep it safe — if warmup is missing or slow, the server comes
+          online normally.
+        </p>
+        <div class="impact-grid">
+          <div class="impact">
+            <div class="num">70–95%</div>
+            <div class="label">Latency spike reduction</div>
+          </div>
+          <div class="impact">
+            <div class="num">8s → 10ms</div>
+            <div class="label">Post-restart tail latency</div>
+          </div>
+          <div class="impact">
+            <div class="num">10+ → 1</div>
+            <div class="label">Paging alerts per quarter</div>
+          </div>
+        </div>
+        <div class="recognition">
+          <strong>External recognition</strong>
+          Uber × Apache Pinot Meetup, July 2025
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: Table Resource Management -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 04</div>
+        <h3 class="project-name">Table Resource Management</h3>
+        <div class="project-tag">Automated quota scaling, cleanup &amp; capacity estimation</div>
+        <span class="project-role">Owner · led toil-reduction OKR</span>
+      </div>
+      <div class="project-body">
+        <p>
+          Managing table quotas and unused tables used to be manual and error-prone —
+          dozens of cleanup requests a quarter and misconfigured quotas that caused
+          incidents. I automated it: <strong>quota scaling</strong> that right-sizes
+          quotas from real usage, a <strong>table-deletion workflow</strong> that
+          safely reclaims abandoned tables (owners are notified and keep a table just
+          by using it), and <strong>capacity estimation</strong> to size clusters
+          correctly — turning a ticket queue into a continuous, data-driven process.
+        </p>
+        <div class="impact-grid">
+          <div class="impact">
+            <div class="num">$4M+</div>
+            <div class="label">Worth of hardware saved</div>
+          </div>
+          <div class="impact">
+            <div class="num">100s hrs/yr</div>
+            <div class="label">Manual toil eliminated</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5: EAP -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 05</div>
+        <h3 class="project-name">Enhanced Analytics Processor</h3>
+        <div class="project-tag">YAML-based framework for analytics flows on Pinot</div>
+        <span class="project-role">Contributor</span>
+      </div>
+      <div class="project-body">
+        <p>
+          <strong>EAP</strong> is a YAML-based framework for building analytics flows
+          on top of Pinot. As a contributor, I helped teams define these flows
+          declaratively in YAML instead of hand-wiring them — cutting the time to build
+          and integrate a new flow by ~80%, and making the flows much more readable and
+          maintainable.
+        </p>
+        <div class="impact-grid">
+          <div class="impact">
+            <div class="num">~80%</div>
+            <div class="label">Faster analytics-flow integration</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 6: Open Source -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 06</div>
+        <h3 class="project-name">Open-Source Pinot</h3>
+        <div class="project-tag">Query optimizations &amp; system improvements</div>
+        <span class="project-role">Apache Pinot contributor</span>
+      </div>
+      <div class="project-body">
+        <p>
+          I <a href="https://github.com/apache/pinot/commits?q=is%3Apr+author%3Apraveenc7&amp;author=praveenc7" target="_blank" rel="noopener">contribute</a>
+          query optimizations and system improvements to <strong>Apache Pinot</strong>
+          upstream — used in production at Uber, Stripe, and LinkedIn.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE ──────────────────────────────────── -->
+<section id="work" class="experience">
+  <div class="container">
+    <div class="section-label reveal">03 / Experience</div>
+    <h2 class="section-title reveal d1">Where I've worked.</h2>
+
+    <div class="exp-item reveal">
+      <div class="exp-year">2022 — Now</div>
+      <div class="exp-title">
+        <h3>LinkedIn</h3>
+        <div class="role">Senior Software Engineer · Sunnyvale</div>
+      </div>
+      <div class="exp-body">
+        <ul>
+          <li>Lead engineer on <strong>PEDAL</strong> — LinkedIn's differential-privacy service protecting 100M+ people.</li>
+          <li>Co-architect of <strong>Query Resource Isolation</strong> in Pinot — per-workload CPU/memory budgets that solve the "noisy neighbor" problem and power smarter capacity estimation.</li>
+          <li>Designed a <strong>warmup framework</strong> that keeps latencies predictable through restarts and data refreshes reducing 90% spikes.</li>
+          <li>Contributor to <strong>EAP</strong>, a YAML-based analytics framework on Pinot — ~80% faster to build and integrate analytics flows.</li>
+          <li>Automated Pinot <strong>table resource management</strong> — $4M+ in hardware saved and hundreds of hours of toil eliminated.</li>
+          <li><strong>Open-source Apache Pinot</strong> contributions — query optimizations and system improvements used at Uber, Stripe, and LinkedIn.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-year">2020 — 2022</div>
+      <div class="exp-title">
+        <h3>VMware</h3>
+        <div class="role">Software Engineer · Palo Alto</div>
+      </div>
+      <div class="exp-body">
+        <ul>
+          <li>Upgraded <strong>OpenFlow 1.0 → 1.5</strong> on the KVM hypervisor, improving NSX feature parity and adoption.</li>
+          <li>Drove <strong>USGv6R1 certification</strong> for the KVM platform — implemented IPv6 features end-to-end with compliance testing.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-year">2020</div>
+      <div class="exp-title">
+        <h3>Nuage Networks (Nokia)</h3>
+        <div class="role">Software Engineer Co-op · Raleigh</div>
+      </div>
+      <div class="exp-body">
+        <ul>
+          <li>Built a stats library for the Nuage Virtual Router to automate monitoring and flow collection, improving observability for the platform team.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-year">2019</div>
+      <div class="exp-title">
+        <h3>WiDeS Lab, USC</h3>
+        <div class="role">Graduate Research Assistant · Prof. Andreas Molisch</div>
+      </div>
+      <div class="exp-body">
+        <ul>
+          <li>Conducted <strong>5 &amp; 6 GHz channel measurements</strong> to inform next-generation Wi-Fi systems.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TALKS ───────────────────────────────────────── -->
+<section id="talks" class="speaking">
+  <div class="container">
+    <div class="section-label reveal">04 / Talks</div>
+    <h2 class="section-title reveal d1">Conference talks &amp; meetups.</h2>
+
+    <div class="talk-grid">
+      <div class="talk reveal">
+        <div class="talk-meta">
+          <span>Jul 10, 2025</span>
+          <span class="badge">Uber × Pinot</span>
+        </div>
+        <h3>Supporting predictable latencies during data refresh and host restarts</h3>
+        <p class="talk-desc">
+          A page-cache warmup design that pre-loads pages with selective queries
+          before Pinot serves traffic. The LinkedIn rollout produced significant
+          P95/P99 reductions and fewer timeouts during restarts and refreshes.
+        </p>
+        <div class="talk-venue">Uber HQ · Sunnyvale, CA</div>
+      </div>
+
+      <div class="talk reveal d1">
+        <div class="talk-meta">
+          <span>Aug 27, 2024</span>
+          <span class="badge">Uber × Pinot</span>
+        </div>
+        <h3>Using Pinot analytics for Differential Privacy</h3>
+        <p class="talk-desc">
+          An introduction to PEDAL — LinkedIn's privacy-enhanced framework that sits
+          between applications and Pinot, applying differential-privacy algorithms to
+          Creator, Post, and Pages analytics.
+        </p>
+        <div class="talk-venue">Uber HQ · Sunnyvale, CA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RESEARCH ────────────────────────────────────── -->
+<section id="research">
+  <div class="container">
+    <div class="section-label reveal">05 / Publications &amp; Patents</div>
+    <!-- <h2 class="section-title reveal d1">Peer-reviewed work, an IEEE paper, and a pending patent.</h2> -->
+
+    <div class="research-item reveal">
+      <div class="research-kind">Patent</div>
+      <div class="research-title"><a href="https://patents.google.com/patent/US20260003996A1/en" target="_blank" rel="noopener">Differential Privacy Architecture for Real-Time Analytics on Streaming Data</a></div>
+      <div class="research-meta">
+        <span class="pub">Pending</span>
+        <span>March 2026</span>
+      </div>
+    </div>
+    <div class="research-item reveal">
+      <div class="research-kind">IEEE Paper</div>
+      <div class="research-title"><a href="https://ieeexplore.ieee.org/abstract/document/9322252" target="_blank" rel="noopener">Directional Delay Spread and Interference Quotient Analysis in sub-7GHz Wi-Fi Bands</a></div>
+      <div class="research-meta">
+        <span class="pub">IEEE</span>
+        <span>Dec 2020</span>
+      </div>
+    </div>
+    <div class="research-item reveal">
+      <div class="research-kind">Journal Paper</div>
+      <div class="research-title"><a href="https://www.ijareeie.com/upload/2016/ncdi3c/21_Designing_NEW.pdf" target="_blank" rel="noopener">Designing of Efficient Security System for Domestic and Defense Purposes</a></div>
+      <div class="research-meta">
+        <span class="pub">IJAREEIE</span>
+        <span>Mar 2016</span>
+      </div>
+    </div>
+    <div class="research-item reveal">
+      <div class="research-kind">Membership</div>
+      <div class="research-title">International Association of Engineers (IAENG)</div>
+      <div class="research-meta">
+        <span class="pub">Member #550139</span>
+        <span>Since Jan 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SKILLS ──────────────────────────────────────── -->
+<section id="skills">
+  <div class="container">
+    <div class="section-label reveal">06 / Skills</div>
+    <h2 class="section-title reveal d1">Languages, domains, and tools.</h2>
+
+    <div class="skills-grid">
+      <div class="skill-block reveal">
+        <h5>Languages</h5>
+        <ul>
+          <li>Java</li>
+          <li>C++</li>
+          <li>C</li>
+          <li>Python</li>
+        </ul>
+      </div>
+      <div class="skill-block reveal d1">
+        <h5>Systems</h5>
+        <ul>
+          <li>Distributed Systems</li>
+          <li>Database Internals</li>
+          <li>Apache Pinot</li>
+          <li>OLAP / Real-time</li>
+        </ul>
+      </div>
+      <div class="skill-block reveal d2">
+        <h5>Networking</h5>
+        <ul>
+          <li>OpenFlow</li>
+          <li>KVM / NSX</li>
+          <li>IPv6 / USGv6R1</li>
+          <li>Routing Protocols</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ──────────────────────────────────────── -->
+<footer id="contact">
+  <div class="footer-grid">
+    <div>
+      <div class="section-label" style="margin-bottom:1rem;">07 / Contact</div>
+      <h2>Get in touch.</h2>
+    </div>
+    <ul class="contact-list">
+      <li>
+        <span class="label">Email</span>
+        <a href="mailto:praveenkchaganlal@gmail.com">praveenkchaganlal@gmail.com</a>
+      </li>
+      <li>
+        <span class="label">LinkedIn</span>
+        <a href="https://www.linkedin.com/in/praveen-kumar-705ba7118/" target="_blank" rel="noopener">/in/praveen-kumar-705ba7118</a>
+      </li>
+      <li>
+        <span class="label">Location</span>
+        <span class="value">Sunnyvale, California</span>
+      </li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Praveen Kumar Chaganlal</span>
+    <span>Built with HTML &amp; CSS · Set in Inter</span>
+  </div>
+</footer>
+
+<script>
+  // Subtle reveal-on-scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Add a border/shadow to the nav once you scroll
+  const nav = document.querySelector('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Highlight the current section in the nav
+  const links = [...document.querySelectorAll('nav a')];
+  const sectionFor = (href) => document.querySelector(href);
+  const spy = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = '#' + e.target.id;
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === id));
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px' });
+  links.forEach(l => {
+    const sec = sectionFor(l.getAttribute('href'));
+    if (sec) spy.observe(sec);
+  });
+</script>
+
+</body>
+</html>
