@@ -4,15 +4,34 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Praveen Kumar Chaganlal — Database & Distributed Systems Engineer</title>
-<meta name="description" content="Senior Software Engineer at LinkedIn building real-time analytics infrastructure, Apache Pinot internals, query resource isolation, differential privacy, and distributed systems." />
+<meta name="description" content="Senior Software Engineer at LinkedIn working on Apache Pinot internals — query engine, resource isolation, differential privacy, and real-time OLAP across a ~10K-host fleet." />
 <meta name="author" content="Praveen Kumar Chaganlal" />
 <meta name="theme-color" content="#fafafa" />
+<link rel="canonical" href="https://praveenc7.github.io/praveenkumarc/" />
 
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Praveen Kumar Chaganlal — Database & Distributed Systems Engineer" />
-<meta property="og:description" content="Senior Software Engineer at LinkedIn building real-time analytics infrastructure, Apache Pinot internals, differential privacy, and distributed systems." />
+<meta property="og:description" content="Apache Pinot internals at LinkedIn: query engine, resource isolation, differential privacy, and real-time OLAP at fleet scale." />
 <meta property="og:url" content="https://praveenc7.github.io/praveenkumarc/" />
 <meta name="twitter:card" content="summary" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Praveen Kumar Chaganlal",
+  "jobTitle": "Senior Software Engineer",
+  "worksFor": { "@type": "Organization", "name": "LinkedIn" },
+  "address": { "@type": "PostalAddress", "addressLocality": "Sunnyvale", "addressRegion": "CA" },
+  "email": "mailto:praveenkchaganlal@gmail.com",
+  "url": "https://praveenc7.github.io/praveenkumarc/",
+  "sameAs": [
+    "https://www.linkedin.com/in/praveen-kumar-705ba7118/",
+    "https://github.com/praveenc7"
+  ],
+  "knowsAbout": ["Apache Pinot", "Distributed Systems", "Database Internals", "OLAP", "Differential Privacy", "Apache Kafka"]
+}
+</script>
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%232657a8'/%3E%3Ctext x='32' y='45' font-family='Arial,sans-serif' font-size='38' font-weight='700' fill='white' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E" />
 
@@ -52,9 +71,7 @@
   a { color: var(--accent); text-decoration: none; }
   a:hover { color: var(--accent-deep); }
 
-  .mono {
-    font-family: 'JetBrains Mono', ui-monospace, monospace;
-  }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 
   /* ─── ACCESSIBILITY ───────────────────────────── */
   .skip-link {
@@ -124,13 +141,8 @@
   }
 
   nav a:hover,
-  nav a.active {
-    color: var(--ink);
-  }
-
-  nav a.active {
-    color: var(--accent);
-  }
+  nav a.active { color: var(--ink); }
+  nav a.active { color: var(--accent); }
 
   /* ─── LAYOUT ──────────────────────────────────── */
   section {
@@ -173,7 +185,7 @@
 
   /* ─── HERO ────────────────────────────────────── */
   .hero {
-    min-height: 88vh;
+    min-height: 80vh;
     padding: 9rem 2rem 5rem;
     display: flex;
     align-items: center;
@@ -201,6 +213,11 @@
     letter-spacing: -0.025em;
     color: var(--ink);
     max-width: 820px;
+  }
+
+  .hero h1 strong {
+    font-weight: 700;
+    color: var(--accent);
   }
 
   .hero-sub {
@@ -259,41 +276,6 @@
     color: var(--ink-3);
   }
 
-  /* ─── SELECTED IMPACT ───────────────────────────── */
-  .impact-strip {
-    padding: 2.4rem 2rem;
-    border-top: 1px solid var(--rule);
-    border-bottom: 1px solid var(--rule);
-    background: #fff;
-  }
-
-  .impact-strip-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.4rem;
-  }
-
-  .impact-card {
-    padding: 1.2rem 1rem;
-    border-left: 2px solid var(--accent);
-    background: var(--accent-soft);
-  }
-
-  .impact-card-num {
-    font-weight: 700;
-    font-size: 1.45rem;
-    line-height: 1.1;
-    color: var(--accent);
-    letter-spacing: -0.02em;
-  }
-
-  .impact-card-label {
-    margin-top: 0.55rem;
-    font-size: 0.82rem;
-    line-height: 1.45;
-    color: var(--ink-2);
-  }
-
   /* ─── ABOUT ───────────────────────────────────── */
   .about-grid {
     display: grid;
@@ -309,9 +291,7 @@
     margin-bottom: 1.2rem;
   }
 
-  .about-body p:last-child {
-    margin-bottom: 0;
-  }
+  .about-body p:last-child { margin-bottom: 0; }
 
   .about-body strong {
     color: var(--ink);
@@ -319,9 +299,7 @@
   }
 
   /* ─── PROJECTS ────────────────────────────────── */
-  .projects {
-    background: var(--surface);
-  }
+  .projects { background: var(--surface); }
 
   .project {
     display: grid;
@@ -332,13 +310,7 @@
     align-items: start;
   }
 
-  .project:first-of-type {
-    border-top: 1px solid var(--rule);
-  }
-
-  .project:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
+  .project:last-child { border-bottom: 1px solid var(--rule); }
 
   .project-num {
     font-family: 'JetBrains Mono', monospace;
@@ -382,6 +354,8 @@
     color: var(--ink-2);
     margin-bottom: 1.1rem;
   }
+
+  .project-body p:last-child { margin-bottom: 0; }
 
   .project-body strong {
     color: var(--ink);
@@ -447,9 +421,7 @@
     align-items: start;
   }
 
-  .exp-item:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
+  .exp-item:last-child { border-bottom: 1px solid var(--rule); }
 
   .exp-year {
     font-family: 'JetBrains Mono', monospace;
@@ -488,9 +460,7 @@
     position: relative;
   }
 
-  .exp-body li:last-child {
-    margin-bottom: 0;
-  }
+  .exp-body li:last-child { margin-bottom: 0; }
 
   .exp-body li::before {
     content: '–';
@@ -507,9 +477,7 @@
   }
 
   /* ─── TALKS ───────────────────────────────────── */
-  .speaking {
-    background: var(--surface);
-  }
+  .speaking { background: var(--surface); }
 
   .talk-grid {
     display: grid;
@@ -568,9 +536,18 @@
   }
 
   .talk-venue {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.74rem;
     color: var(--ink-3);
+  }
+
+  .talk-venue a {
+    color: var(--accent);
+    letter-spacing: 0.04em;
   }
 
   /* ─── RESEARCH ─────────────────────────────────── */
@@ -583,9 +560,7 @@
     align-items: baseline;
   }
 
-  .research-item:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
+  .research-item:last-child { border-bottom: 1px solid var(--rule); }
 
   .research-kind {
     font-family: 'JetBrains Mono', monospace;
@@ -685,9 +660,7 @@
     font-size: 1rem;
   }
 
-  .contact-list {
-    list-style: none;
-  }
+  .contact-list { list-style: none; }
 
   .contact-list li {
     border-top: 1px solid var(--rule);
@@ -700,9 +673,7 @@
     gap: 1rem;
   }
 
-  .contact-list li:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
+  .contact-list li:last-child { border-bottom: 1px solid var(--rule); }
 
   .contact-list .label {
     font-size: 0.68rem;
@@ -712,13 +683,9 @@
   }
 
   .contact-list a,
-  .contact-list .value {
-    color: var(--ink);
-  }
+  .contact-list .value { color: var(--ink); }
 
-  .contact-list a:hover {
-    color: var(--accent);
-  }
+  .contact-list a:hover { color: var(--accent); }
 
   .footer-bottom {
     max-width: var(--maxw);
@@ -767,9 +734,6 @@
     section { padding: 4rem 1.2rem; }
     .hero { padding: 7rem 1.2rem 3rem; min-height: auto; }
 
-    .impact-strip { padding: 1.6rem 1.2rem; }
-    .impact-strip-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
-
     .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     .project { grid-template-columns: 1fr; gap: 1.2rem; padding: 2.4rem 0; }
     .exp-item { grid-template-columns: 1fr; gap: 0.8rem; padding: 2rem 0; }
@@ -778,10 +742,6 @@
     .research-meta { text-align: left; }
     .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
     footer { padding: 3.5rem 1.2rem 2rem; }
-  }
-
-  @media (max-width: 520px) {
-    .impact-strip-grid { grid-template-columns: 1fr; }
   }
 
   /* ─── PRINT ───────────────────────────────────── */
@@ -801,7 +761,7 @@
 
 <a class="skip-link" href="#about">Skip to content</a>
 
-<nav>
+<nav aria-label="Main">
   <div class="mark">Praveen Chaganlal<span>.</span></div>
   <ul>
     <li><a href="#about">About</a></li>
@@ -816,18 +776,18 @@
 <header class="hero">
   <div class="hero-inner">
     <p class="eyebrow">Senior Software Engineer · LinkedIn Data Infrastructure</p>
-    <h1>I build database infrastructure for real-time analytics at LinkedIn scale.</h1>
+    <h1>I work on real-time OLAP infrastructure at LinkedIn scale.</h1>
     <p class="hero-sub">
-      I work on Apache Pinot, query isolation, differential privacy, and latency-critical
-      distributed systems that power member-facing analytics products.
+      Query engine, resource isolation, differential privacy, and latency-critical
+      distributed systems powering member-facing analytics across a ~10K-host fleet
+      serving up to 500K QPS.
     </p>
 
     <div class="hero-cta">
       <a class="btn btn-primary" href="#projects">View work</a>
       <a class="btn" href="mailto:praveenkchaganlal@gmail.com">Email</a>
       <a class="btn" href="https://www.linkedin.com/in/praveen-kumar-705ba7118/" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="btn" href="https://github.com/praveenc7" target="_blank" rel="noopener">GitHub</a>
-      <!-- Add this once you upload your resume PDF -->
+      <!-- Upload resume.pdf to the repo root, then uncomment: -->
       <!-- <a class="btn" href="/praveenkumarc/resume.pdf" target="_blank" rel="noopener">Resume</a> -->
     </div>
 
@@ -854,10 +814,11 @@
           and the real-time analytics systems built around it.
         </p>
         <p>
-          My recent work includes LinkedIn's differential-privacy analytics layer,
-          Pinot query resource isolation, page-cache warmup for predictable latency,
-          and automation for table resource management. I like working close to the
-          infrastructure layer — the parts users rarely see, but everything else depends on.
+          My recent work includes Pinot query resource isolation, index
+          optimization, query-engine improvements, page-cache
+          warmup for predictable latency, and LinkedIn's differential-privacy
+          analytics layer. I like working close to the infrastructure layer — the
+          parts users rarely see, but everything else depends on.
         </p>
         <p>
           Before LinkedIn, I worked on KVM hypervisors and OpenFlow at <strong>VMware</strong>,
@@ -875,13 +836,52 @@
     <div class="section-label reveal">02 / Selected work</div>
     <h2 class="section-title reveal d1">Production systems I’ve designed, led, and shipped at LinkedIn.</h2>
 
-    <!-- PROJECT 1: PEDAL -->
+    <!-- PROJECT 1: QRI -->
     <div class="project reveal">
       <div class="project-left">
         <div class="project-num">P / 01</div>
+        <h3 class="project-name">Query Resource Isolation</h3>
+        <div class="project-tag">Solving the noisy-neighbor problem in Pinot</div>
+        <span class="project-role">Co-architect &amp; lead implementer</span>
+      </div>
+
+      <div class="project-body">
+        <p>
+          In a shared database, one heavy workload can slow down everyone else — the
+          classic noisy-neighbor problem.
+          <a href="https://arxiv.org/abs/2603.07382" target="_blank" rel="noopener">QRI</a>
+          gives each workload its own CPU and memory budget inside Pinot, so a single
+          expensive query cannot drag down the rest. It runs continuously across
+          LinkedIn's ~10K-host Pinot fleet, keeping latencies stable under heavy or
+          unpredictable traffic.
+        </p>
+        <p>
+          It also drives efficiency: the same per-workload accounting powers a
+          capacity estimator that sizes clusters accurately and lets teams safely
+          consolidate workloads instead of over-provisioning to stay safe — prevent noisy-neighbor
+          and better resource utilization.
+        </p>
+
+        <div class="impact-grid">
+          <div class="impact">
+            <div class="num">&lt;1%</div>
+            <div class="label">Overhead from QRI</div>
+          </div>
+          <div class="impact">
+            <div class="num">&gt;99%</div>
+            <div class="label">Resource accounting accuracy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: PEDAL -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 02</div>
         <h3 class="project-name">PEDAL</h3>
         <div class="project-tag">Privacy-Enhanced Data Analytics Layer</div>
-        <span class="project-role">Lead engineer</span>
+        <span class="project-role">Core engineer</span>
       </div>
 
       <div class="project-body">
@@ -893,8 +893,9 @@
           without exposing which individual member viewed their content.
         </p>
         <p>
-          The service runs in real time on LinkedIn's Pinot stack, adds tens of
-          milliseconds of overhead, and enforces formal differential-privacy guarantees.
+          The service runs in real time on LinkedIn's Pinot stack with millisecond-level
+          overhead and enforces formal differential-privacy guarantees. I built the
+          metadata store, privacy-loss tracker, query control, and tenant isolation.
           It powers Post, Creator, and Pages Analytics today.
         </p>
 
@@ -914,43 +915,6 @@
           <a href="https://hbsp.harvard.edu/product/623024-PDF-ENG" target="_blank" rel="noopener">Harvard Business School case study</a> ·
           <a href="https://patents.google.com/patent/US20260003996A1/en" target="_blank" rel="noopener">US Patent pending</a> ·
           Internal Best Innovation award
-        </div>
-      </div>
-    </div>
-
-    <!-- PROJECT 2: QRI -->
-    <div class="project reveal">
-      <div class="project-left">
-        <div class="project-num">P / 02</div>
-        <h3 class="project-name">Query Resource Isolation</h3>
-        <div class="project-tag">Solving the noisy-neighbor problem in Pinot</div>
-        <span class="project-role">Co-architect &amp; lead implementer</span>
-      </div>
-
-      <div class="project-body">
-        <p>
-          In a shared database, one heavy workload can slow down everyone else — the
-          classic noisy-neighbor problem.
-          <a href="https://arxiv.org/abs/2603.07382" target="_blank" rel="noopener">QRI</a>
-          gives each workload its own CPU and memory budget inside Pinot, so a single
-          expensive query cannot drag down the rest. That keeps latencies stable under
-          heavy or unpredictable traffic, protecting product and site health.
-        </p>
-        <p>
-          It also drives efficiency: the same per-workload accounting powers a
-          capacity estimator that sizes clusters more accurately and lets teams
-          safely consolidate workloads instead of over-provisioning to stay safe.
-        </p>
-
-        <div class="impact-grid">
-          <div class="impact">
-            <div class="num">&lt;1%</div>
-            <div class="label">Overhead from QRI</div>
-          </div>
-          <div class="impact">
-            <div class="num">&gt;99%</div>
-            <div class="label">Resource accounting accuracy</div>
-          </div>
         </div>
       </div>
     </div>
@@ -990,7 +954,7 @@
             <div class="label">Post-restart tail latency</div>
           </div>
           <div class="impact">
-            <div class="num">10+ → 1</div>
+            <div class="num">10+ before</div>
             <div class="label">Paging alerts per quarter</div>
           </div>
         </div>
@@ -1002,10 +966,38 @@
       </div>
     </div>
 
-    <!-- PROJECT 4: Table Resource Management -->
+    <!-- PROJECT 4: Query Engine & Open Source -->
     <div class="project reveal">
       <div class="project-left">
         <div class="project-num">P / 04</div>
+        <h3 class="project-name">Query Engine</h3>
+        <div class="project-tag">Open-source Apache Pinot contributions</div>
+        <span class="project-role">Apache Pinot contributor · 20+ merged PRs</span>
+      </div>
+
+      <div class="project-body">
+        <p>
+          Highlights:
+          <a href="https://github.com/apache/pinot/pull/16678" target="_blank" rel="noopener"><strong>ANY_VALUE</strong></a>,
+          a SQL aggregation that removes forced GROUP BY on 1:1-mapped columns (50%
+          average GROUP BY latency win);
+          <a href="https://github.com/apache/pinot/pull/17411" target="_blank" rel="noopener"><strong>adaptive DISTINCT_COUNT</strong></a>,
+          which switches between RoaringBitmap and direct HLL by cardinality for 2–6x
+          p99 gains in production; and
+          <a href="https://github.com/apache/pinot/pull/15350" target="_blank" rel="noopener"><strong>Virtual DataSource</strong></a>,
+          which keeps schema evolution from breaking in-flight queries during segment reload.
+        </p>
+        <p>
+        Full list of
+          <a href="https://github.com/apache/pinot/pulls?q=is%3Apr+author%3Apraveenc7+is%3Amerged" target="_blank" rel="noopener">merged PRs on GitHub</a>.
+        </p>
+      </div>
+    </div>
+
+    <!-- PROJECT 5: Table Resource Management -->
+    <div class="project reveal">
+      <div class="project-left">
+        <div class="project-num">P / 05</div>
         <h3 class="project-name">Table Resource Management</h3>
         <div class="project-tag">Automated quota scaling, cleanup &amp; capacity estimation</div>
         <span class="project-role">Owner · led toil-reduction OKR</span>
@@ -1025,7 +1017,7 @@
         <div class="impact-grid">
           <div class="impact">
             <div class="num">$4M+</div>
-            <div class="label">Hardware savings</div>
+            <div class="label">Hardware savings per year</div>
           </div>
           <div class="impact">
             <div class="num">Hundreds</div>
@@ -1035,10 +1027,10 @@
       </div>
     </div>
 
-    <!-- PROJECT 5: EAP -->
+    <!-- PROJECT 6: EAP -->
     <div class="project reveal">
       <div class="project-left">
-        <div class="project-num">P / 05</div>
+        <div class="project-num">P / 06</div>
         <h3 class="project-name">Enhanced Analytics Processor</h3>
         <div class="project-tag">YAML-based framework for analytics flows on Pinot</div>
         <span class="project-role">Contributor</span>
@@ -1051,6 +1043,7 @@
           <a href="https://arxiv.org/abs/2606.05662" target="_blank" rel="noopener">declaratively in YAML</a>
           instead of hand-wiring them — cutting the time to build and integrate a new
           flow by about 80%, while making the flows more readable and maintainable.
+          I also built its IntelliJ plugin, from innovation-week prototype to production.
         </p>
 
         <div class="impact-grid">
@@ -1059,29 +1052,6 @@
             <div class="label">Faster analytics-flow integration</div>
           </div>
         </div>
-      </div>
-    </div>
-
-    <!-- PROJECT 6: Open Source -->
-    <div class="project reveal">
-      <div class="project-left">
-        <div class="project-num">P / 06</div>
-        <h3 class="project-name">Open-Source Apache Pinot</h3>
-        <div class="project-tag">Query execution, aggregation, observability &amp; reliability</div>
-        <span class="project-role">Apache Pinot contributor</span>
-      </div>
-
-      <div class="project-body">
-        <p>
-          I <a href="https://github.com/apache/pinot/commits?q=is%3Apr+author%3Apraveenc7&amp;author=praveenc7" target="_blank" rel="noopener">contribute</a>
-          production-driven improvements to <strong>Apache Pinot</strong>, including query
-          execution features, aggregation behavior, controller/server observability,
-          and reliability fixes.
-        </p>
-        <p>
-          My work is shaped by operating Pinot at LinkedIn scale, then upstreaming the
-          pieces that are broadly useful to the community.
-        </p>
       </div>
     </div>
 
@@ -1103,12 +1073,12 @@
 
       <div class="exp-body">
         <ul>
-          <li>Lead engineer on <strong>PEDAL</strong>, LinkedIn's differential-privacy service protecting 100M+ members through privacy-preserving analytics.</li>
-          <li>Co-architected <strong>Query Resource Isolation</strong> in Pinot — per-workload CPU/memory budgets that solve the noisy-neighbor problem and power smarter capacity estimation.</li>
-          <li>Designed a <strong>page-cache warmup framework</strong> that reduced restart-related latency spikes by 70–95%.</li>
-          <li>Contributed to <strong>EAP</strong>, a YAML-based analytics framework on Pinot that made analytics-flow integration about 80% faster.</li>
-          <li>Automated Pinot <strong>table resource management</strong>, saving $4M+ in hardware and eliminating hundreds of engineering hours per year.</li>
-          <li><strong>Open-source Apache Pinot</strong> contributor — query execution, aggregation, observability, and reliability improvements.</li>
+          <li>Co-architected <strong>Query Resource Isolation</strong> in Pinot — per-workload CPU/memory budgets across a ~10K-host fleet that eliminated noisy-neighbor incidents and saved $5M+ through consolidation.</li>
+          <li>Landed <strong>query-engine features</strong>: ANY_VALUE, adaptive DISTINCT_COUNT (6x for Creator Analytics), Virtual DataSource, and an Apache Arrow block format that take join workloads from seconds to sub-second.</li>
+          <li>Designed a <strong>page-cache warmup framework</strong> — post-restart tail latency 8s → 10ms and 70–95% fewer latency spikes.</li>
+          <li>Core engineer on <strong>PEDAL</strong>, LinkedIn's differential-privacy service protecting 100M+ members daily. US patent pending.</li>
+          <li>Automated Pinot <strong>table resource management</strong>, saving $4M+/year in hardware and hundreds of engineering hours.</li>
+          <li>Built <strong>reliability guardrails</strong> — CPU-time-based query killing and thread-pool isolation that keep costly and GenAI-generated queries from destabilizing shared clusters.</li>
         </ul>
       </div>
     </div>
@@ -1176,7 +1146,9 @@
           before Pinot serves traffic. The LinkedIn rollout produced significant
           P95/P99 reductions and fewer timeouts during restarts and refreshes.
         </p>
-        <div class="talk-venue">Uber HQ · Sunnyvale, CA</div>
+        <div class="talk-venue">
+          <span>Uber HQ · Sunnyvale, CA</span>
+        </div>
       </div>
 
       <div class="talk reveal d1">
@@ -1190,7 +1162,9 @@
           between applications and Pinot, applying differential-privacy algorithms to
           Creator, Post, and Pages analytics.
         </p>
-        <div class="talk-venue">Uber HQ · Sunnyvale, CA</div>
+        <div class="talk-venue">
+          <span>Uber HQ · Sunnyvale, CA</span>
+        </div>
       </div>
     </div>
   </div>
@@ -1255,49 +1229,10 @@
   </div>
 </section>
 
-<!-- ─── SERVICE & RECOGNITION ───────────────────────── -->
-<section id="service">
-  <div class="container">
-    <div class="section-label reveal">06 / Service &amp; Recognition</div>
-
-    <div class="research-item reveal">
-      <div class="research-kind">Judge</div>
-      <div class="research-title">
-        <a href="https://www.bintelligence.com/judge/praveen-chaganlal" target="_blank" rel="noopener">
-          Business Intelligence Group
-        </a>
-      </div>
-      <div class="research-meta">
-        <span class="pub">Business awards</span>
-      </div>
-    </div>
-
-    <div class="research-item reveal">
-      <div class="research-kind">Reviewer</div>
-      <div class="research-title">
-        <a href="https://orangeava.com/" target="_blank" rel="noopener">Orange AVA</a>
-      </div>
-      <div class="research-meta">
-        <span class="pub">Technical books</span>
-      </div>
-    </div>
-
-    <div class="research-item reveal">
-      <div class="research-kind">Reviewer</div>
-      <div class="research-title">
-        <a href="https://bpbonline.com/" target="_blank" rel="noopener">BPB Online</a>
-      </div>
-      <div class="research-meta">
-        <span class="pub">Technical books</span>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ─── SKILLS ──────────────────────────────────────── -->
 <section id="skills">
   <div class="container">
-    <div class="section-label reveal">07 / Skills</div>
+    <div class="section-label reveal">06 / Skills</div>
     <h2 class="section-title reveal d1">Languages, systems, and tools.</h2>
 
     <div class="skills-grid">
@@ -1305,29 +1240,29 @@
         <h5>Languages</h5>
         <ul>
           <li>Java</li>
-          <li>C++</li>
-          <li>C</li>
           <li>Python</li>
+          <li>C++ / C</li>
+          <li>SQL</li>
         </ul>
       </div>
 
       <div class="skill-block reveal d1">
         <h5>Systems</h5>
         <ul>
-          <li>Distributed Systems</li>
-          <li>Database Internals</li>
           <li>Apache Pinot</li>
-          <li>OLAP / Real-time Analytics</li>
+          <li>Apache Kafka</li>
+          <li>Helix / ZooKeeper</li>
+          <li>OLAP / Columnar Storage</li>
         </ul>
       </div>
 
       <div class="skill-block reveal d2">
-        <h5>Infrastructure</h5>
+        <h5>Domains</h5>
         <ul>
-          <li>Query Isolation</li>
-          <li>Capacity Estimation</li>
-          <li>Reliability Engineering</li>
-          <li>Observability</li>
+          <li>Query Isolation &amp; Multi-tenancy</li>
+          <li>Capacity Planning</li>
+          <li>Reliability &amp; Observability</li>
+          <li>Differential Privacy</li>
         </ul>
       </div>
     </div>
@@ -1338,11 +1273,11 @@
 <footer id="contact">
   <div class="footer-grid">
     <div>
-      <div class="section-label" style="margin-bottom:1rem;">08 / Contact</div>
+      <div class="section-label" style="margin-bottom:1rem;">07 / Contact</div>
       <h2>Get in touch.</h2>
       <p class="footer-lede">
         Open to conversations around database systems, distributed infrastructure,
-        real-time analytics.
+        and real-time analytics.
       </p>
     </div>
 
